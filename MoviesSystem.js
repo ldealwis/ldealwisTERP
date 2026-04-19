@@ -9,11 +9,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.set("view engine", "ejs");
 app.set("views", path.resolve(__dirname, "templates"));
 
-/*
+
 require("dotenv").config({
    path: path.resolve(__dirname, "credentialsDontPost/.env"),
 });
-*/
+
 
 
 const databaseName = "CMSC335DB";
@@ -22,7 +22,7 @@ const uri = process.env.MONGO_CONNECTION_STRING;
 const client = new MongoClient(uri, { serverApi: ServerApiVersion.v1 });
 
 app.get("/", async (req, res) => {
-   res.send(`My Deployment`);
+  res.sendFile(path.join(__dirname, 'templates/deploy/index.shtml'));
 });
 
 app.get("/insertMovies", async (req, res) => {
